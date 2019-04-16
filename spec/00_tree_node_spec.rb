@@ -89,7 +89,7 @@ describe PolyTreeNode do
     it "should raise an error if node is not a child" do
       expect do
         node2.remove_child(node1)
-      end.to raise_error
+      end.to raise_error('Node is not a child')
     end
   end
 end
