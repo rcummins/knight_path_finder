@@ -10,14 +10,10 @@ class PolyTreeNode
     end
 
     def parent=(new_parent)
-        if @parent.nil?
-            @parent = new_parent
-        else
-            # for reassingment, delete this node from old parent's children
-            @parent.children.delete(self)
-            @parent = new_parent
-        end
+        # for reassingment, delete this node from old parent's children
+        @parent.children.delete(self) unless @parent.nil?
 
+        @parent = new_parent
         new_parent.children << self unless new_parent.nil?
     end
 
