@@ -35,4 +35,19 @@ class KnightPathFinder
 
         return new_moves
     end
+
+    def build_move_tree
+        nodes_to_explore = [@root_node]
+
+        until nodes_to_explore.empty?
+            this_node = nodes_to_explore.shift
+            positions_to_add = new_move_positions(this_node.value)
+
+            positions_to_add.each do |position_to_add|
+                new_node = PolyTreeNode.new(position_to_add)
+                new_node.parent = this_node
+                nodes_to_explore.push(new_node)
+            end
+        end
+    end
 end
