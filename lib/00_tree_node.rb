@@ -41,6 +41,15 @@ class PolyTreeNode
         return nil
     end
 
+    def bfs(target_value)
+        nodes_to_check = [self]
+        until nodes_to_check.empty?
+            this_node = nodes_to_check.shift
+            return this_node if this_node.value == target_value
+            this_node.children.each { |child| nodes_to_check.push(child) }
+        end
+    end
+
     def inspect
         summary = ''
         summary += "value: #{@value}, "
