@@ -2,7 +2,7 @@ require 'RSpec'
 require '01_knight_path_finder'
 
 describe 'KnightPathFinder' do
-    let(:kpf) { KnightPathFinder.new([3, 3]) }
+    let(:kpf) { KnightPathFinder.new([0, 0]) }
 
     describe '::valid_moves' do
         it 'returns the correct positions for an initial pos of [3, 3]' do
@@ -33,39 +33,37 @@ describe 'KnightPathFinder' do
         end
 
         it 'sets the value of @root_node equal to the starting position' do
-            expect(kpf.root_node.value).to eq([3, 3])
+            expect(kpf.root_node.value).to eq([0, 0])
         end
 
         it 'sets @considered_positions to array containing start position' do
-            expect(kpf.considered_positions).to eq([[3, 3]])
+            expect(kpf.considered_positions).to eq([[0, 0]])
         end
     end
 
     describe '#new_move_positions' do
-    let(:kpf00) { KnightPathFinder.new([0, 0]) }
-
         it 'returns the correct positions for an initial pos of [0, 0]' do
-            expect(kpf00.new_move_positions([0, 0])).to eq([[2, 1], [1, 2]])
+            expect(kpf.new_move_positions([0, 0])).to eq([[2, 1], [1, 2]])
         end
 
         it 'adds the new move positions to @considered_positions' do
-            kpf00.new_move_positions([0, 0])
+            kpf.new_move_positions([0, 0])
             expected_moves = [[0, 0], [2, 1], [1, 2]]
-            expect(kpf00.considered_positions).to eq(expected_moves)
+            expect(kpf.considered_positions).to eq(expected_moves)
         end
 
         it 'returns correct positions after move from [0, 0] to [2, 1]' do
-            kpf00.new_move_positions([0, 0])
+            kpf.new_move_positions([0, 0])
             expected_moves = [[0, 2], [4, 0], [1, 3], [4, 2], [3, 3]]
-            expect(kpf00.new_move_positions([2, 1])).to eq(expected_moves)
+            expect(kpf.new_move_positions([2, 1])).to eq(expected_moves)
         end
 
         it '@considered_positions correct after move from [0,0] to [2,1]' do
-            kpf00.new_move_positions([0, 0])
-            kpf00.new_move_positions([2, 1])
+            kpf.new_move_positions([0, 0])
+            kpf.new_move_positions([2, 1])
             expected_moves = [[0, 0], [2, 1], [1, 2], [0, 2], [4, 0], [1, 3],
                 [4, 2], [3, 3]]
-            expect(kpf00.considered_positions).to eq(expected_moves)
+            expect(kpf.considered_positions).to eq(expected_moves)
         end
     end
 end
