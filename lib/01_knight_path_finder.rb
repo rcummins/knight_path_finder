@@ -1,7 +1,7 @@
 require_relative '00_tree_node'
 
 class KnightPathFinder
-    attr_reader :root_node
+    attr_reader :root_node, :considered_positions
 
     def self.valid_moves(pos)
         short_offsets = [-1, 1]
@@ -23,5 +23,16 @@ class KnightPathFinder
 
     def initialize(pos)
         @root_node = PolyTreeNode.new(pos)
+        @considered_positions = [pos]
+    end
+
+    def new_move_positions(pos)
+        new_moves = self.class.valid_moves(pos).reject do |possible_pos|
+            @considered_positions.include?(possible_pos)
+        end
+
+        @considered_positions.concat(new_moves)
+
+        return new_moves
     end
 end
