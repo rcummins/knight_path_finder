@@ -10,6 +10,21 @@ describe 'KnightPathFinder' do
                 [5, 2], [2, 5], [5, 4], [4, 5]]
             expect(KnightPathFinder.valid_moves([3,3])).to eq(expected_moves)
         end
+
+        it 'returns the correct positions for an initial pos of [0, 3]' do
+            expected_moves = [[1, 1], [2, 2], [2, 4], [1, 5]]
+            expect(KnightPathFinder.valid_moves([0,3])).to eq(expected_moves)
+        end
+
+        it 'returns the correct positions for an initial pos of [7, 3]' do
+            expected_moves = [[5, 2], [6, 1], [5, 4], [6, 5]]
+            expect(KnightPathFinder.valid_moves([7,3])).to eq(expected_moves)
+        end
+
+        it 'returns the correct positions for an initial pos of [0, 0]' do
+            expected_moves = [[2, 1], [1, 2]]
+            expect(KnightPathFinder.valid_moves([0,0])).to eq(expected_moves)
+        end
     end
 
     describe '#initialize' do

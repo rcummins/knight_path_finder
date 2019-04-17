@@ -10,8 +10,11 @@ class KnightPathFinder
 
         long_offsets.each do |long_offset|
             short_offsets.each do |short_offset|
-                moves << [pos.first + long_offset, pos.last + short_offset]
-                moves << [pos.first + short_offset, pos.last + long_offset]
+                pos_a = [pos.first + long_offset, pos.last + short_offset]
+                pos_b = [pos.first + short_offset, pos.last + long_offset]
+
+                moves << pos_a unless pos_a.min < 0 || pos_a.max > 7
+                moves << pos_b unless pos_b.min < 0 || pos_b.max > 7
             end
         end
 
