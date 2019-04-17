@@ -93,4 +93,18 @@ describe 'KnightPathFinder' do
             expect(kpf33.considered_positions.take(9)).to eq(expected_1st_9)
         end
     end
+
+    describe '#find_path' do
+        it 'returns the correct path from [0, 0] to [7, 6]' do
+            kpf.build_move_tree
+            expected_path = [[0, 0], [2, 1], [4, 0], [5, 2], [6, 4], [7, 6]]
+            expect(kpf.find_path([7, 6])).to eq(expected_path)
+        end
+
+        it 'returns the correct path from [0, 0] to [6, 2]' do
+            kpf.build_move_tree
+            expected_path = [[0, 0], [2, 1], [4, 2], [5, 0], [6, 2]]
+            expect(kpf.find_path([6, 2])).to eq(expected_path)
+        end
+    end
 end

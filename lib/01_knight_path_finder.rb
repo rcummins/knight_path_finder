@@ -1,4 +1,5 @@
 require_relative '00_tree_node'
+require 'byebug'
 
 class KnightPathFinder
     attr_reader :root_node, :considered_positions
@@ -49,5 +50,22 @@ class KnightPathFinder
                 nodes_to_explore.push(new_node)
             end
         end
+    end
+
+    def find_path(end_pos)
+        end_node = @root_node.dfs(end_pos)
+        trace_path_back(end_node)
+    end
+
+    def trace_path_back(end_node)
+        current_node = end_node
+        path = [current_node.value]
+
+        until current_node == @root_node
+            current_node = current_node.parent
+            path.unshift(current_node.value)
+        end
+
+        return path
     end
 end
